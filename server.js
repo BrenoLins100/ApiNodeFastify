@@ -1,4 +1,5 @@
 const fastify = require('fastify')({ logger: true });
+const cors = require('@fastify/cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -22,6 +23,11 @@ fastify.get('/', async (request, reply) => {
 
 // Registrar as rotas de produtos
 fastify.register(require('./routes/ProductRoutes'), { prefix: '/api' });
+
+//permitindo CORS
+fastify.register(cors,{
+  origin: '*'
+})
 
 // Iniciar o servidor
 const start = async () => {
