@@ -25,8 +25,11 @@ fastify.register(require('./routes/ProductRoutes'), { prefix: '/api' });
 
 // Iniciar o servidor
 const start = async () => {
+
+  var port = process.env.PORT || 3000;
+
   try {
-    await fastify.listen({ port: 3000, host: '0.0.0.0' });
+    await fastify.listen(port, '0.0.0.0');
     console.log('Server running at http://0.0.0.0:3000/');
   } catch (err) {
     fastify.log.error(err);
